@@ -1,2 +1,2 @@
-# reacthooks
-High-performance hooks for your React production apps
+# Smarthooks
+High-performance hooks for your React projects.
