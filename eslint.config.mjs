@@ -14,4 +14,5 @@ export default [
   { settings: { react: { version: "detect" } } },
   { rules: { "no-console": "error" } },
   eslintPluginPrettierRecommended,
+  { env: { browser: true, node: true } },
 ];
