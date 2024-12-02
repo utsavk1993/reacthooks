@@ -1,8 +1,8 @@
-import { act, renderHook } from '@testing-library/react';
-import useToggle from '../useToggle';
+import { act, renderHook } from "@testing-library/react";
+import useToggle from "../useToggle";
 
-describe('useToggle hook', () => {
-  it('should initialize with the default value (false)', () => {
+describe("useToggle hook: unit tests", () => {
+  it("should initialize with the default value (false)", () => {
     const { result } = renderHook(() => useToggle());
     const [value] = result.current;
 
@@ -10,16 +10,16 @@ describe('useToggle hook', () => {
     expect.assertions(1);
   });
 
-  it('should initialize with the provided value (true)', () => {
+  it("should initialize with the provided value (true)", () => {
     const { result } = renderHook(() => useToggle(true));
     const [value] = result.current;
 
     expect(value).toBe(true);
   });
 
-  it('should toggle the value using the toggle function', () => {
+  it("should toggle the value using the toggle function", () => {
     const { result } = renderHook(() => useToggle());
-    const [_, toggle] = result.current;
+    const [, toggle] = result.current;
 
     act(() => {
       toggle(); // Toggles false -> true
@@ -34,9 +34,9 @@ describe('useToggle hook', () => {
     expect(result.current[0]).toBe(false);
   });
 
-  it('should set the value explicitly using setToggle', () => {
+  it("should set the value explicitly using setToggle", () => {
     const { result } = renderHook(() => useToggle());
-    const [_, __, setToggle] = result.current;
+    const [, , setToggle] = result.current;
 
     act(() => {
       setToggle(true); // Sets value to true
@@ -51,7 +51,7 @@ describe('useToggle hook', () => {
     expect(result.current[0]).toBe(false);
   });
 
-  it('should maintain the same toggle and setToggle references across renders', () => {
+  it("should maintain the same toggle and setToggle references across renders", () => {
     const { result, rerender } = renderHook(() => useToggle());
     const [, toggleBefore, setToggleBefore] = result.current;
 

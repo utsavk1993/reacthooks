@@ -16,7 +16,7 @@
  * setToggle(true); // Sets `value` to `true`.
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 type UseToggleReturnType = [boolean, () => void, (value: boolean) => void];
 
@@ -28,5 +28,5 @@ function useToggle(initialValue: boolean = false): UseToggleReturnType {
 
   return [value, toggle, setToggle];
 }
-  
+
 export default useToggle;
