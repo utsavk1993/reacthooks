@@ -1,5 +1,5 @@
 {
-  "name": "smarthooks",
+  "name": "reacthooks",
   "version": "1.0.0",
   "description": "High-performance hooks for your React projects.",
   "main": "dist/index.cjs.js",
