@@ -2,13 +2,16 @@
   "name": "reacthooks",
   "version": "1.0.0",
   "description": "High-performance hooks for your React projects.",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "jest",
@@ -18,8 +21,11 @@
     "lint": "eslint --fix 'src/**/*.{ts,tsx,js,jsx}'",
     "lint:ci": "eslint 'src/**/*.{ts,tsx,js,jsx}'"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "react-hooks"
+  ],
+  "author": "Utsav Kumar<utsavkumar.ca@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "react": "^18.3.1",
@@ -27,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@swc/core": "^1.10.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
