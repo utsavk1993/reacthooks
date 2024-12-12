@@ -8,6 +8,7 @@ A collection of reusable hooks for your React production apps. These hooks are l
 2. `useCounter` - Manage numeric counters with ease.
 3. `usePrevious` - Track the previous value of a state or prop.
 4. `useLocalStorage` - Store, retrieve and reset the value in browser's local storage.
+5. `useSessionStorage` - Store, retrieve and reset the value in browser's session storage.
 
 ## 📚 Usage
 

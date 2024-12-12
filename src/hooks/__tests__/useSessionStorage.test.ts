@@ -1,17 +1,17 @@
 import { act, renderHook } from "@testing-library/react";
-import useLocalStorage from "@/hooks/useLocalStorage";
+import useSessionStorage from "@/hooks/useSessionStorage";
 
-describe("useLocalStorage hook: unit tests", () => {
+describe("useSessionStorage hook: unit tests", () => {
   afterEach(() => {
-    // Clear localStorage after each test
-    window.localStorage.clear();
+    // Clear sessionStorage after each test
+    window.sessionStorage.clear();
     // Restore all mocks
     jest.restoreAllMocks();
   });
 
   it("should initialize with the default value", () => {
     // Render the hook with an initial value of "light"
-    const { result } = renderHook(() => useLocalStorage("theme", "light"));
+    const { result } = renderHook(() => useSessionStorage("theme", "light"));
 
     // Destructure the value from the result
     const [value] = result.current;
@@ -20,12 +20,12 @@ describe("useLocalStorage hook: unit tests", () => {
     expect(value).toBe("light");
   });
 
-  it("should return the stored value from localStorage", () => {
-    // Set an item in localStorage with the key "theme" and value "dark"
-    window.localStorage.setItem("theme", JSON.stringify("dark"));
+  it("should return the stored value from sessionStorage", () => {
+    // Set an item in sessionStorage with the key "theme" and value "dark"
+    window.sessionStorage.setItem("theme", JSON.stringify("dark"));
 
     // Render the hook with an initial value of "light"
-    const { result } = renderHook(() => useLocalStorage("theme", "light"));
+    const { result } = renderHook(() => useSessionStorage("theme", "light"));
 
     // Destructure the value from the result
     const [value] = result.current;
@@ -36,7 +36,7 @@ describe("useLocalStorage hook: unit tests", () => {
 
   it("should set the value using the setValue function", () => {
     // Render the hook with an initial value of "light"
-    const { result } = renderHook(() => useLocalStorage("theme", "light"));
+    const { result } = renderHook(() => useSessionStorage("theme", "light"));
 
     // Destructure the setValue function from the result
     const [, setValue] = result.current;
@@ -52,7 +52,7 @@ describe("useLocalStorage hook: unit tests", () => {
 
   it("should reset the value using the resetValue function", () => {
     // Render the hook with an initial value of "light"
-    const { result } = renderHook(() => useLocalStorage("theme", "light"));
+    const { result } = renderHook(() => useSessionStorage("theme", "light"));
 
     // Destructure the resetValue function from the result
     const [, , resetValue] = result.current;
@@ -66,12 +66,12 @@ describe("useLocalStorage hook: unit tests", () => {
     expect(result.current[0]).toBe("light");
   });
 
-  it("should handle errors when reading from localStorage", () => {
-    // Mock localStorage.getItem to throw an error
+  it("should handle errors when reading from sessionStorage", () => {
+    // Mock sessionStorage.getItem to throw an error
     jest
-      .spyOn(window.localStorage.__proto__, "getItem")
+      .spyOn(window.sessionStorage.__proto__, "getItem")
       .mockImplementation(() => {
-        throw new Error("Error reading from localStorage");
+        throw new Error("Error reading from sessionStorage");
       });
 
     // Mock console.error to avoid displaying errors in the console during tests
@@ -81,7 +81,7 @@ describe("useLocalStorage hook: unit tests", () => {
 
     // Render the hook
     const { result } = renderHook(() =>
-      useLocalStorage("testKey", "defaultValue"),
+      useSessionStorage("testKey", "defaultValue"),
     );
 
     // Assert that the value falls back to the initial value
@@ -90,7 +90,7 @@ describe("useLocalStorage hook: unit tests", () => {
     // Assert that console.error is called with the correct error message
     // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining("Error reading from localStorage"),
+      expect.stringContaining("Error reading from sessionStorage"),
       expect.anything(),
     );
 
@@ -98,12 +98,12 @@ describe("useLocalStorage hook: unit tests", () => {
     consoleErrorMock.mockRestore();
   });
 
-  it("should handle errors when writing to localStorage", () => {
-    // Mock localStorage.setItem to throw an error
+  it("should handle errors when writing to sessionStorage", () => {
+    // Mock sessionStorage.setItem to throw an error
     jest
-      .spyOn(window.localStorage.__proto__, "setItem")
+      .spyOn(window.sessionStorage.__proto__, "setItem")
       .mockImplementation(() => {
-        throw new Error("Error setting localStorage value");
+        throw new Error("Error setting sessionStorage value");
       });
 
     // Mock console.error to avoid displaying errors in the console during tests
@@ -113,7 +113,7 @@ describe("useLocalStorage hook: unit tests", () => {
 
     // Render the hook
     const { result } = renderHook(() =>
-      useLocalStorage("testKey", "defaultValue"),
+      useSessionStorage("testKey", "defaultValue"),
     );
 
     // Destructure the setValue function from the result
@@ -130,7 +130,7 @@ describe("useLocalStorage hook: unit tests", () => {
     // Assert that console.error is called with the correct error message
     // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining("Error setting localStorage value"),
+      expect.stringContaining("Error setting sessionStorage value"),
       expect.anything(),
     );
 
@@ -139,11 +139,11 @@ describe("useLocalStorage hook: unit tests", () => {
   });
 
   it("should handle errors when resetting the value", () => {
-    // Mock localStorage.setItem to throw an error
+    // Mock sessionStorage.setItem to throw an error
     jest
-      .spyOn(window.localStorage.__proto__, "setItem")
+      .spyOn(window.sessionStorage.__proto__, "setItem")
       .mockImplementation(() => {
-        throw new Error("Error resetting localStorage value");
+        throw new Error("Error resetting sessionStorage value");
       });
 
     // Mock console.error to avoid displaying errors in the console during tests
@@ -153,7 +153,7 @@ describe("useLocalStorage hook: unit tests", () => {
 
     // Render the hook
     const { result } = renderHook(() =>
-      useLocalStorage("testKey", "defaultValue"),
+      useSessionStorage("testKey", "defaultValue"),
     );
 
     // Destructure the resetValue function from the result
@@ -170,7 +170,7 @@ describe("useLocalStorage hook: unit tests", () => {
     // Assert that console.error is called with the correct error message
     // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining("Error resetting localStorage value"),
+      expect.stringContaining("Error resetting sessionStorage value"),
       expect.anything(),
     );
 
@@ -181,7 +181,7 @@ describe("useLocalStorage hook: unit tests", () => {
   it("should return the same setValue function when the key is the same", () => {
     // Render the hook with a key of "theme"
     const { result, rerender } = renderHook(
-      ({ key }) => useLocalStorage(key, "initialValue"),
+      ({ key }) => useSessionStorage(key, "initialValue"),
       {
         initialProps: { key: "theme" },
       },
@@ -203,7 +203,7 @@ describe("useLocalStorage hook: unit tests", () => {
   it("should return a new setValue function when the key changes", () => {
     // Render the hook with a key of "theme"
     const { result, rerender } = renderHook(
-      ({ key }) => useLocalStorage(key, "initialValue"),
+      ({ key }) => useSessionStorage(key, "initialValue"),
       {
         initialProps: { key: "theme" },
       },
@@ -225,7 +225,7 @@ describe("useLocalStorage hook: unit tests", () => {
   it("should return the same resetValue function when the key is the same", () => {
     // Render the hook with a key of "theme"
     const { result, rerender } = renderHook(
-      ({ key }) => useLocalStorage(key, "initialValue"),
+      ({ key }) => useSessionStorage(key, "initialValue"),
       {
         initialProps: { key: "theme" },
       },
@@ -247,7 +247,7 @@ describe("useLocalStorage hook: unit tests", () => {
   it("should return a new resetValue function when the key changes", () => {
     // Render the hook with a key of "theme"
     const { result, rerender } = renderHook(
-      ({ key }) => useLocalStorage(key, "initialValue"),
+      ({ key }) => useSessionStorage(key, "initialValue"),
       {
         initialProps: { key: "theme" },
       },
@@ -269,7 +269,7 @@ describe("useLocalStorage hook: unit tests", () => {
   it("should return the same storedValue when the key is the same", () => {
     // Render the hook with a key of "theme"
     const { result, rerender } = renderHook(
-      ({ key }) => useLocalStorage(key, "initialValue"),
+      ({ key }) => useSessionStorage(key, "initialValue"),
       {
         initialProps: { key: "theme" },
       },
