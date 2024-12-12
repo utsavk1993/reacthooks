@@ -7,6 +7,11 @@ A collection of reusable hooks for your React production apps. These hooks are l
 1. `useToggle` - Toggle boolean states effortlessly. 
 2. `useCounter` - Manage numeric counters with ease.
 3. `usePrevious` - Track the previous value of a state or prop.
+4. `useLocalStorage` - Store, retrieve and reset the value in browser's local storage.
+
+## 📚 Usage
+
+To learn more about how to use these hooks, checkout the documentation [HERE](./docs).
 
 ## 📜 License
 
