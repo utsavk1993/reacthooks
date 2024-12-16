@@ -4,3 +4,4 @@ export { default as usePrevious } from "@/hooks/usePrevious";
 export { default as useCounter } from "@/hooks/useCounter";
 export { default as useLocalStorage } from "@/hooks/useLocalStorage";
 export { default as useSessionStorage } from "@/hooks/useSessionStorage";
+export { default as useFetch } from "@/hooks/useFetch";
