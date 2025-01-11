@@ -20,7 +20,7 @@ import { useState, useCallback } from "react";
 
 type UseToggleReturnType = [boolean, () => void, (value: boolean) => void];
 
-function useToggle(initialValue: boolean = false): UseToggleReturnType {
+export function useToggle(initialValue: boolean = false): UseToggleReturnType {
   const [value, setValue] = useState<boolean>(initialValue);
 
   const toggle = useCallback(() => setValue((prev) => !prev), []);
@@ -28,5 +28,3 @@ function useToggle(initialValue: boolean = false): UseToggleReturnType {
 
   return [value, toggle, setToggle];
 }
-
-export default useToggle;

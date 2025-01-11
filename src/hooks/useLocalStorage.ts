@@ -21,7 +21,7 @@ import { useState, useCallback } from "react";
 
 type UseLocalStorageReturnType<T> = [T, (value: T) => void, () => void];
 
-function useLocalStorage<T>(
+export function useLocalStorage<T>(
   key: string,
   initialValue: T,
 ): UseLocalStorageReturnType<T> {
@@ -61,5 +61,3 @@ function useLocalStorage<T>(
 
   return [value, setValue, resetValue];
 }
-
-export default useLocalStorage;
