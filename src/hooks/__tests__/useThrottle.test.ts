@@ -104,4 +104,20 @@ describe("useThrottle hook: unit tests", () => {
     });
     expect(result.current).toBe("updated");
   });
+
+  it("should call setThrottledValue and update state after the throttle delay", () => {
+    const { result, rerender } = renderHook(
+      ({ value }) => useThrottle(value, 500),
+      { initialProps: { value: "initial" } },
+    );
+
+    expect(result.current).toBe("initial");
+
+    act(() => jest.advanceTimersByTime(1000));
+
+    rerender({ value: "updated after throttle" });
+
+    act(() => jest.advanceTimersByTime(500));
+    expect(result.current).toBe("updated after throttle");
+  });
 });
