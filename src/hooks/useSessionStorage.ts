@@ -21,7 +21,7 @@ import { useState, useCallback } from "react";
 
 type UseSessionStorageReturnType<T> = [T, (value: T) => void, () => void];
 
-function useSessionStorage<T>(
+export function useSessionStorage<T>(
   key: string,
   initialValue: T,
 ): UseSessionStorageReturnType<T> {
@@ -61,5 +61,3 @@ function useSessionStorage<T>(
 
   return [value, setValue, resetValue];
 }
-
-export default useSessionStorage;

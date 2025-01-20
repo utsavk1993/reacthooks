@@ -21,7 +21,7 @@ import { useState, useCallback } from "react";
 
 type UseCounterReturnType = [number, () => void, () => void, () => void];
 
-function useCounter(
+export function useCounter(
   initialValue: number = 0,
   step: number = 1,
 ): UseCounterReturnType {
@@ -33,5 +33,3 @@ function useCounter(
 
   return [count, increment, decrement, reset];
 }
-
-export default useCounter;
